@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% block title %}Trang chủ{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <h2 class="mb-4">Danh sách phòng</h2>
+  <a href="{% url 'room_create' %}" class="btn btn-success me-2">➕ Tạo phòng mới</a>
+
+  <form method="post" action="{% url 'logout' %}" style="display: inline;">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">🚪 Đăng xuất</button>
+  </form>
+
+  <div class="row mt-4">
+    {% for room in rooms %}
+      <div class="col-md-4 mb-4">
+        <div class="card shadow text-center {% if room.tenant_set.exists %} border-success {% else %} border-secondary {% endif %}">
+          <div class="card-body">
+            <span style="font-size: 3rem;">🏠</span>
+            <h5 class="card-title mt-2">{{ room.room_name }}</h5>
+            <p><strong>Giá:</strong> {{ room.room_price|currency }} VNĐ</p>
+            {% if room.tenant_set.exists %}
+              <span class="badge bg-success">Đã có người thuê</span>
+            {% else %}
+              <span class="badge bg-secondary">Phòng trống</span>
+            {% endif %}
+            <a href="{% url 'room_detail' room.id %}" class="btn btn-primary mt-2">Xem chi tiết</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p>Chưa có phòng nào.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

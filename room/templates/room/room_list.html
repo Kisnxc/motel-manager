@@ -1,0 +1,11 @@
+<h2>Danh sách phòng trọ</h2>
+<a href="{% url 'room_create' %}">➕ Thêm phòng</a>
+<ul>
+  {% for room in rooms %}
+    <li>
+      {{ room.room_name }} - {{ room.room_price }} VNĐ
+      [<a href="{% url 'room_update' room.pk %}">Sửa</a>]
+      [<a href="{% url 'room_delete' room.pk %}">Xoá</a>]
+    </li>
+  {% endfor %}
+</ul>

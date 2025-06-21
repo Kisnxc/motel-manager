@@ -1,0 +1,22 @@
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>Phòng</th>
+      <th>Tháng</th>
+      <th>Điện</th>
+      <th>Nước</th>
+      <th>Tổng</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for b in bills %}
+      <tr class="{% if not b.is_paid %}table-danger{% endif %}">
+        <td>{{ b.room }}</td>
+        <td>{{ b.month|date:"m/Y" }}</td>
+        <td>{{ b.electricity }}</td>
+        <td>{{ b.water }}</td>
+        <td>{{ b.total|floatformat:0 }} VNĐ</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>

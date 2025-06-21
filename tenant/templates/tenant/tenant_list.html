@@ -1,0 +1,7 @@
+<h2>Người thuê</h2>
+<a href="{% url 'tenant_create' %}">➕ Thêm người thuê</a>
+<ul>
+  {% for t in tenants %}
+    <li>{{ t.name }} - {{ t.phone }} (Phòng: {{ t.room.room_name }})</li>
+  {% endfor %}
+</ul>

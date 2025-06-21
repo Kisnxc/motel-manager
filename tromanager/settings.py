@@ -62,6 +62,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'tromanager.urls'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-d0721.up.railway.app',
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
